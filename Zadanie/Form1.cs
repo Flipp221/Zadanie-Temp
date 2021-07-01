@@ -57,5 +57,40 @@ namespace Zadanie
         {
 
         }
+
+        private void box_label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_box3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void box_label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_box4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void box_label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_box5_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void text_box6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
