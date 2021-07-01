@@ -70,11 +70,7 @@ namespace Zadanie
 
         private void box_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
-            {
-                e.Handled = true;
-            }
+
         }
         private void box_label4_Click(object sender, EventArgs e)
         {
@@ -108,45 +104,77 @@ namespace Zadanie
         private void Form1_Load(object sender, EventArgs e)
         {
 
-
-            dataGridView1.AllowUserToAddRows = false;
-
-            users.Add(new User("12.06.2021 15:23", -4, -3, -1));
-            users.Add(new User("12.06.2021 15:33", -4, -3, -1));
-            users.Add(new User("12.06.2021 15:43", -5, -3, -2));
-            users.Add(new User("12.06.2021 15:53", -5, -3, -2));
-            users.Add(new User("12.06.2021 16:03", -4, -3, -1));
-            users.Add(new User("12.06.2021 16:13", -4, -3, -1));
-            users.Add(new User("12.06.2021 16:23", -4, -3, -1));
-
-
-
-            DataTable table = new DataTable();
-            table.Columns.Add("Время", typeof(string));
-            table.Columns.Add("Факт", typeof(int));
-            table.Columns.Add("Норма", typeof(int));
-            table.Columns.Add("Отклонение от нормы", typeof(int));
-
-            for (int i = 0; i < users.Count; i++)
-            {
-                table.Rows.Add(users[i].time, users[i].fact, users[i].norm, users[i].otk);
-            }
-
-            dataGridView1.DataSource = table;
-
         }
+        private void TableFish()
+        {
+            int norma;
+            DateTime time;
+            int maxCount = 0;
+            int minCount = 0;
+            try
+            {
+                time = Convert.ToDateTime(maskedTextBox1.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Введите верный формат времени");
+            }
+            time = Convert.ToDateTime(maskedTextBox1.Text);
+            try
+            {
+                string ss = text_box4.Text;
+                string[] Temp = ss.Split(',', '.', ';', ' ');
+                int[] numbers = new int[Temp.Length];
+                for (int i = 0; i < Temp.Length; i++)
+                {
+                    numbers[i] = Int32.Parse(Temp[i]);
+                }
+                for (int i = 0; i < Temp.Length; i++)
+                {
+                    if (numbers[i] < 0)
+                    {
+                        norma = Convert.ToInt32(tbMin.Text);
+                    }
+                    else
+                    {
+                        norma = Convert.ToInt32(tbMax.Text);
+                    }
 
+                    time = time.AddMinutes(10);
+                    dtnTable.Rows.Add();
+                    dtnTable[0, i].Value = time;
+                    dtnTable[1, i].Value = numbers[i];
+                    dtnTable[2, i].Value = norma;
+                    dtnTable[3, i].Value = numbers[i] - norma;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Подставьте верные значения в строку температура");
+                MessageBox.Show("Пример Ввода 0,0,0,0,0");
+            }
+        }
         private void result_Click(object sender, EventArgs e)
         {
-
+            TableFish();
         }
 
         private void clear_Click(object sender, EventArgs e)
         {
             Text_Box.Text = "";
-            text_box3.Text = "";
-            Text_Box2.Text = "";
+            tbMin.Text = "";
+            tbMax.Text = "";
             text_box4.Text = "";
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }
