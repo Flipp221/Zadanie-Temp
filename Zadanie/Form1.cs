@@ -14,56 +14,45 @@ namespace Zadanie
     public partial class Form1 : Form
     {
 
-        public struct User
-        {
-            public string time;
-            public int fact;
-            public int norm;
-            public int otk;
-
-            public User(string _time, int _fact, int _norm, int _otk)
-            {
-                time = _time;
-                fact = _fact;
-                norm = _norm;
-                otk = _otk;
-            }
-        }
-        List<User> users = new List<User>();
-
+        int maxCount = 0;
+        int minCount = 0;
+        int maxHours;
+        int maxMinute;
+        int minHours;
+        int minMinute;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void bl1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void tb1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void bl2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void tbMin_TextChanged(object sender, EventArgs e)
         {
 
         }
 
 
-        private void box_label3_Click(object sender, EventArgs e)
+        private void bl3_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void text_box3_TextChanged(object sender, EventArgs e)
+        private void tbMax_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -72,27 +61,27 @@ namespace Zadanie
         {
 
         }
-        private void box_label4_Click(object sender, EventArgs e)
+        private void bl4_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void text_box4_TextChanged(object sender, EventArgs e)
+        private void tb4_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void box_label5_Click(object sender, EventArgs e)
+        private void bl5_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void text_box5_TextChanged(object sender, EventArgs e)
+        private void tb5_TextChanged(object sender, EventArgs e)
         {
            
         }
 
-        private void text_box6_TextChanged(object sender, EventArgs e)
+        private void tb6_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -109,20 +98,19 @@ namespace Zadanie
         {
             int norma;
             DateTime time;
-            int maxCount = 0;
-            int minCount = 0;
+
             try
             {
-                time = Convert.ToDateTime(maskedTextBox1.Text);
+                time = Convert.ToDateTime(mtb1.Text);
             }
             catch
             {
-                MessageBox.Show("Введите верный формат времени");
+                MessageBox.Show("Введён неверный формат времени");
             }
-            time = Convert.ToDateTime(maskedTextBox1.Text);
+            time = Convert.ToDateTime(mtb1.Text);
             try
             {
-                string ss = text_box4.Text;
+                string ss = tb4.Text;
                 string[] Temp = ss.Split(',', '.', ';', ' ');
                 int[] numbers = new int[Temp.Length];
                 for (int i = 0; i < Temp.Length; i++)
@@ -146,12 +134,29 @@ namespace Zadanie
                     dtnTable[1, i].Value = numbers[i];
                     dtnTable[2, i].Value = norma;
                     dtnTable[3, i].Value = numbers[i] - norma;
+                    int count = Convert.ToInt32(dtnTable[3, i].Value);
+                    if (numbers[i] > 0 && count > 0 && count <= Convert.ToInt32(tbMax.Text))
+                    {
+                        maxCount += 1;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                    if (numbers[i] < 0 && count < 0 && count >= Convert.ToInt32(tbMin.Text))
+                    {
+                        minCount += 1;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
                 }
             }
             catch
             {
-                MessageBox.Show("Подставьте верные значения в строку температура");
-                MessageBox.Show("Пример Ввода 0,0,0,0,0");
+                MessageBox.Show("Подставь верное значение в строку температура");
             }
         }
         private void result_Click(object sender, EventArgs e)
@@ -161,10 +166,12 @@ namespace Zadanie
 
         private void clear_Click(object sender, EventArgs e)
         {
-            Text_Box.Text = "";
+            tb1.Text = "";
             tbMin.Text = "";
             tbMax.Text = "";
-            text_box4.Text = "";
+            tb4.Text = "";
+            maxCount = 0;
+            minCount = 0;
         }
 
         private void label1_Click_1(object sender, EventArgs e)
