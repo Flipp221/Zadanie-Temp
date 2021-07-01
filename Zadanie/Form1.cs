@@ -68,6 +68,14 @@ namespace Zadanie
 
         }
 
+        private void box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
         private void box_label4_Click(object sender, EventArgs e)
         {
 
@@ -126,6 +134,19 @@ namespace Zadanie
 
             dataGridView1.DataSource = table;
 
+        }
+
+        private void result_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            Text_Box.Text = "";
+            text_box3.Text = "";
+            Text_Box2.Text = "";
+            text_box4.Text = "";
         }
     }
 }

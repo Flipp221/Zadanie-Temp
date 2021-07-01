@@ -40,6 +40,8 @@
             this.text_box6 = new System.Windows.Forms.TextBox();
             this.text_box5 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.result = new System.Windows.Forms.Button();
+            this.clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,6 +81,7 @@
             this.Text_Box2.TabIndex = 3;
             this.Text_Box2.Text = "5";
             this.Text_Box2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.Text_Box2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.box_KeyPress);
             // 
             // box_label3
             // 
@@ -98,6 +101,7 @@
             this.text_box3.TabIndex = 6;
             this.text_box3.Text = "-3";
             this.text_box3.TextChanged += new System.EventHandler(this.text_box3_TextChanged);
+            this.text_box3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.box_KeyPress);
             // 
             // box_label4
             // 
@@ -116,6 +120,7 @@
             this.text_box4.Size = new System.Drawing.Size(100, 20);
             this.text_box4.TabIndex = 8;
             this.text_box4.TextChanged += new System.EventHandler(this.text_box4_TextChanged);
+            this.text_box4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.box_KeyPress);
             // 
             // box_label5
             // 
@@ -135,6 +140,7 @@
             this.text_box6.TabIndex = 10;
             this.text_box6.Text = "60";
             this.text_box6.TextChanged += new System.EventHandler(this.text_box6_TextChanged);
+            this.text_box6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.box_KeyPress);
             // 
             // text_box5
             // 
@@ -144,6 +150,7 @@
             this.text_box5.TabIndex = 11;
             this.text_box5.Text = "20";
             this.text_box5.TextChanged += new System.EventHandler(this.text_box5_TextChanged);
+            this.text_box5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.box_KeyPress);
             // 
             // dataGridView1
             // 
@@ -154,11 +161,33 @@
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // result
+            // 
+            this.result.Location = new System.Drawing.Point(621, 32);
+            this.result.Name = "result";
+            this.result.Size = new System.Drawing.Size(75, 23);
+            this.result.TabIndex = 13;
+            this.result.Text = "Вывести";
+            this.result.UseVisualStyleBackColor = true;
+            this.result.Click += new System.EventHandler(this.result_Click);
+            // 
+            // clear
+            // 
+            this.clear.Location = new System.Drawing.Point(713, 32);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(75, 23);
+            this.clear.TabIndex = 14;
+            this.clear.Text = "Отчистить";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.clear);
+            this.Controls.Add(this.result);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.text_box5);
             this.Controls.Add(this.text_box6);
@@ -194,6 +223,8 @@
         private System.Windows.Forms.TextBox text_box6;
         private System.Windows.Forms.TextBox text_box5;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button result;
+        private System.Windows.Forms.Button clear;
     }
 }
 
